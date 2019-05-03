@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
-using JetBrains.OsTestFramework;
+﻿using JetBrains.OsTestFramework;
 using NUnit.Framework;
 
 
@@ -10,19 +7,16 @@ namespace RemoteHostTestExecution
     [TestFixture]
     public class UnitTest1
     {
-        private readonly string _assemblyDirectory = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().EscapedCodeBase).AbsolutePath);
-
 
         private const string Ip = "192.168.0.84";
-        private const string UserName = "IEUser";
-        private const string Password = "Passw0rd!";
+        private const string UserName = "nunittest";
+        private const string Password = "123456";
 
-        [Test()]
+        [Test]
         public void TestMethod1()
         {
-
-            var operatingSystem = new RemoteEnvironment(Ip, UserName, Password, Path.Combine(_assemblyDirectory, @"..\..\tools\PsExec.exe"));
-            operatingSystem.CopyFileFromGuestToHost(@"C:\Downloads\7z920-x64.msi", @"C:\Temp");
+            var operatingSystem = new RemoteEnvironment(Ip, UserName, Password, @"c:\Users\\Eugene\source\repos\PSTools\PsExec.exe");
+            operatingSystem.CopyFileFromHostToGuest(@"c:\Users\Eugene\source\repos\LeetCodeZigZag\ZigZagTest\bin\Debug\ZigZagConversion.zip", @"C:\_work");
             //Console.WriteLine(operatingSystem.GuestEnvironmentVariables.Count);
 
         }
